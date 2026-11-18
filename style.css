@@ -1,32 +1,89 @@
-* { 
-  box-sizing: border-box; 
-  margin: 0; 
-  padding: 0; 
-} 
- 
-:root { 
-  --color-primary: #7B9669; 
-  --color-accent: #BAC8B1; 
-  --color-bg: #E6E6E6; 
-  --color-text: #404E3B; 
-}  
- 
-body { 
-  font-family: Arial, sans-serif; 
-  color: var(--color-text); 
-  background: var(--color-bg); 
-} 
-.dashboard { 
-  display: grid; 
-  grid-template-areas: 
-    "topbar" 
-    "content"; 
-  min-height: 100vh; 
-} 
- 
-.sidebar { display: none; } 
-.topbar { grid-area: topbar; } 
-.content { grid-area: content; }
+/* SESSION 2 - CSS RESET */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* BASE VARIABLES */
+
+:root {
+    --color-primary: #0B4F6C;
+    --color-accent: #056688;
+    --color-bg: #F3F7F8;
+    --color-text: #1A2B3C;
+    --color-white: #ffffff;
+}
+
+
+/* BODY */
+
+body {
+    font-family: Arial, sans-serif;
+    color: var(--color-text);
+    background: var(--color-bg);
+}
+
+
+/* PAGE FRAME WITH CSS GRID */
+
+.dashboard {
+    display: grid;
+    grid-template-areas:
+        "topbar"
+        "content";
+
+    min-height: 100vh;
+}
+
+.sidebar {
+    display: none;
+}
+
+.topbar {
+    grid-area: topbar;
+}
+
+.content {
+    grid-area: content;
+}
+
+
+/* SIDEBAR */
+
+.sidebar {
+    background: var(--color-primary);
+    color: white;
+    padding: 1rem;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 0.75rem;
+    border-radius: 8px;
+}
+
+
+/* TOPBAR */
+
+.topbar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: white;
+}
+
+
+/* SESSION 2 - FLEXBOX */
 
 .stat-cards {
     display: flex;
@@ -42,48 +99,175 @@ body {
     padding: 1rem;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
-/* Tablet and up (≥ 600px) */ 
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 0.5rem;
+}
+
+
+/* CHART PLACEHOLDER */
+
+.chart-placeholder {
+    margin: 1rem;
+    padding: 2rem;
+    background: white;
+    border-radius: 8px;
+    text-align: center;
+}
+
+
+/* SESSION 3 - MENU TOGGLE */
+
+#menu-toggle {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--color-primary);
+}
+
+
+/* SIDEBAR OPEN */
+
+.sidebar.sidebar-open {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 10;
+}
+
+
+/* ACTIVE NAVIGATION */
+
+.nav-link.active {
+    background: rgba(255, 255, 255, 0.15);
+    font-weight: bold;
+}
+
+
+/* REFRESH BUTTON */
+
+#btn-refresh {
+    align-self: center;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 8px;
+    background: var(--color-primary);
+    color: var(--color-white);
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#btn-refresh:hover {
+    background: var(--color-accent);
+}
+
+
+/* SESSION 3 - GREETING DEMO */
+
+.greeting-demo {
+    margin: 1rem;
+    padding: 1rem;
+    background: white;
+    border-radius: 8px;
+}
+
+.greeting-demo input {
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+}
+
+
+/* SESSION 4 - API CONTROLS */
+
+.api-demo {
+    margin: 1rem;
+    padding: 1rem;
+    background: white;
+    border-radius: 8px;
+}
+
+.api-controls {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.api-controls input {
+    padding: 0.5rem;
+}
+
+
+/* REQUEST STATES */
+
+.state-message {
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    background: #eef5f7;
+    color: var(--color-primary);
+}
+
+
+/* USER LIST */
+
+#user-list {
+    list-style: none;
+    padding: 0;
+}
+
+#user-list li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+
+/* RESPONSIVE DESIGN - TABLET */
+
 @media (min-width: 600px) {
+
     .stat-card {
         flex: 1 1 45%;
     }
-}
- 
-/* Desktop and up (≥ 1024px) */ 
-@media (min-width: 1024px) { 
-  .dashboard { 
-    grid-template-columns: 240px 1fr; 
-    grid-template-areas: 
-      "sidebar topbar" 
-      "sidebar content"; 
-  } 
- 
-  .sidebar { display: block; } 
-  .stat-card { flex: 1 1 200px; } 
-} 
 
-//step 5
-#menu-toggle { 
-  background: none; 
-  border: none; 
-  font-size: 1.5rem; 
-  cursor: pointer; 
-  color: var(--color-primary); 
-} 
-  
-@media (min-width: 1024px) { 
-  #menu-toggle { display: none; } 
-} 
-  
-.sidebar.sidebar-open { 
-  display: block; 
-  position: fixed; 
-  top: 0; left: 0; 
-  height: 100vh; 
-  z-index: 10; 
-} 
-  
-.nav-link.active { 
-  background: rgba(255, 255, 255, 0.15); 
-  font-weight: bold; 
-} 
+}
+
+
+/* RESPONSIVE DESIGN - DESKTOP */
+
+@media (min-width: 1024px) {
+
+    .dashboard {
+        grid-template-columns: 240px 1fr;
+
+        grid-template-areas:
+            "sidebar topbar"
+            "sidebar content";
+    }
+
+    .sidebar {
+        display: block;
+        grid-area: sidebar;
+    }
+
+    .topbar {
+        grid-area: topbar;
+    }
+
+    .content {
+        grid-area: content;
+    }
+
+    .stat-card {
+        flex: 1 1 200px;
+    }
+
+    #menu-toggle {
+        display: none;
+    }
+
+}
